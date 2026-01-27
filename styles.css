@@ -1,0 +1,32 @@
+body {
+  color: white;
+  font-family: Sans-Serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+header {
+  max-width: 100%;
+}
+nav {
+  background-color: rgba(20, 33, 33, 80%);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-left: auto;
+  padding: 5px;
+}
+.options {
+  margin-top: auto;
+}
+.options a {
+  color: white;
+  text-decoration: none;
+}
