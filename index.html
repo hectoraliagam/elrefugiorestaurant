@@ -1,22 +1,35 @@
 <!doctype html>
-<html>
+<html lang="es">
   <head>
-    <title>Refugio</title>
+    <meta charset="UTF-8" />
+    <title>Refugio Restaurant</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
   </head>
+
   <body>
-    <header>
-      <nav>
-        <div class="logo">LOGO</div>
-        <ul class="options">
-          <li><a href="#">Menu</a></li>
-          <li><a href="#">Acerca de nosotros</a></li>
-          <li><a href="#">Contacto</a></li>
+
+    <header class="header">
+      <nav class="nav">
+        <div class="logo">REFUGIO</div>
+        <ul class="nav-links">
+          <li><a href="#menu">Menú</a></li>
+          <li><a href="#about">Nosotros</a></li>
+          <li><a href="#contact">Contacto</a></li>
         </ul>
+        <div class="menu-toggle" id="menuToggle">☰</div>
       </nav>
     </header>
-    <div class="container">
-      <section class="hero"></section>
-    </div>
+    
+    <section class="hero">
+      <div class="hero-overlay"></div>
+
+      <div class="hero-content">
+        <h1>Refugio</h1>
+        <p>Donde la comida te manda al baño de una 🙂</p>
+        <a href="#menu" class="btn-primary">Ver Menú</a>
+      </div>
+    </section>
+    
   </body>
 </html>
