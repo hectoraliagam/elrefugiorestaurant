@@ -62,3 +62,13 @@ navAnchors.forEach((link) => {
     });
   });
 });
+
+/* CLOSE MENU ON RESIZE */
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 768) {
+    menuOpen = false;
+    navLinks.style.display = "flex";
+  } else {
+    navLinks.style.display = "none";
+  }
+});
