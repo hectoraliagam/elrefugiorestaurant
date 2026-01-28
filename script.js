@@ -40,3 +40,25 @@ navAnchors.forEach((link) => {
     }
   });
 });
+
+/* SMOOTH SCROLL WITH HEADER OFFSET */
+navAnchors.forEach((link) => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const targetId = link.getAttribute("href");
+    const target = document.querySelector(targetId);
+    const headerHeight = header.offsetHeight;
+
+    const targetPosition =
+      target.getBoundingClientRect().top +
+      window.pageYOffset -
+      headerHeight -
+      10;
+
+    window.scrollTo({
+      top: targetPosition,
+      behavior: "smooth",
+    });
+  });
+});
