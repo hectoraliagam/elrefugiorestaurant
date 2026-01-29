@@ -25,7 +25,9 @@
   --transition-fast: 0.2s ease;
   --transition-slow: 0.4s ease;
 
-  --header-height: 72px;
+  --header-height: 130px;
+  --logo-height: 116px;
+  --toggle-size: 2.6rem;
   --max-width: 1100px;
 }
 
@@ -69,35 +71,61 @@ body {
   backdrop-filter: blur(14px);
   z-index: 1000;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transition:
+    height 0.35s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .header.scrolled {
+  --header-height: 112px;
+  --logo-height: 86px;
+  --toggle-size: 2.4rem;
+
   background: rgba(10, 10, 10, 0.96);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
 }
 
 .nav {
   height: 100%;
-  padding-inline: 1.4rem;
+  padding-inline: 1.2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 .logo {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--gold-main);
-  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  text-decoration: none;
+}
+
+.logo-img {
+  height: var(--logo-height);
+  width: auto;
+  object-fit: contain;
+  transition:
+    height 0.35s ease,
+    transform 0.25s ease,
+    filter 0.25s ease;
+}
+
+.logo:hover .logo-img {
+  transform: scale(1.05);
+  filter: drop-shadow(0 4px 10px rgba(212, 175, 55, 0.25));
 }
 
 /* ===== NAV ===== */
 .menu-toggle {
-  font-size: 1.9rem;
+  font-size: var(--toggle-size);
+  flex-shrink: 0;
   background: none;
   border: none;
   color: var(--gold-main);
   cursor: pointer;
+  z-index: 1100;
+  transition: font-size 0.35s ease;
 }
 
 .nav-links {
@@ -271,8 +299,8 @@ p {
   position: fixed;
   right: 20px;
   bottom: 20px;
-  width: 58px;
-  height: 58px;
+  width: 92px;
+  height: 92px;
   background: linear-gradient(135deg, var(--gold-main), var(--gold-dark));
   border-radius: 50%;
   display: flex;
@@ -301,15 +329,16 @@ p {
   animation-play-state: paused;
 }
 
-/* Active (click) */
+/* Active */
 .whatsapp-float:active {
   transform: scale(0.96);
 }
 
 /* Icon */
 .whatsapp-icon {
-  width: 45px;
-  height: 45px;
+  width: 78px;
+  height: 78px;
+  fill: var(--bg-soft);
   transition: transform var(--transition-fast);
 }
 
@@ -359,6 +388,12 @@ p {
 
 /* ===== DESKTOP ===== */
 @media (min-width: 768px) {
+  :root {
+    --header-height: 96px;
+    --logo-height: 72px;
+    --toggle-size: 2.2rem;
+  }
+
   .menu-toggle {
     display: none;
   }
