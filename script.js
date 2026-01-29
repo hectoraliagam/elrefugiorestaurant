@@ -3,72 +3,55 @@ const menuToggle = document.getElementById("menuToggle");
 const navLinks = document.querySelector(".nav-links");
 const navAnchors = document.querySelectorAll(".nav-links a");
 
-let menuOpen = false;
+const MOBILE_BREAKPOINT = 768;
 
-/* HEADER SCROLL EFFECT */
+/* HEADER SCROLL */
 window.addEventListener("scroll", () => {
   if (window.scrollY > 40) {
-    header.style.background = "rgba(12, 12, 12, 0.95)";
-    header.style.boxShadow = "0 8px 30px rgba(0, 0, 0, 0.6)";
+    header.classList.add("scrolled");
   } else {
-    header.style.background = "rgba(18, 18, 18, 0.85)";
-    header.style.boxShadow = "none";
+    header.classList.remove("scrolled");
   }
 });
 
-/* MOBILE MENU TOGGLE */
+/* MOBILE MENU */
 menuToggle.addEventListener("click", () => {
-  menuOpen = !menuOpen;
-
-  navLinks.style.display = menuOpen ? "flex" : "none";
-  navLinks.style.position = "absolute";
-  navLinks.style.top = "72px";
-  navLinks.style.right = "0";
-  navLinks.style.width = "100%";
-  navLinks.style.flexDirection = "column";
-  navLinks.style.background = "#0b0b0b";
-  navLinks.style.padding = "1.5rem";
-  navLinks.style.gap = "1.2rem";
+  navLinks.classList.toggle("open");
 });
 
-/* CLOSE MENU ON LINK CLICK */
+/* CLOSE MENU ON LINK CLICK (MOBILE ONLY) */
 navAnchors.forEach((link) => {
   link.addEventListener("click", () => {
-    if (window.innerWidth <= 768) {
-      menuOpen = false;
-      navLinks.style.display = "none";
+    if (window.innerWidth <= MOBILE_BREAKPOINT) {
+      navLinks.classList.remove("open");
     }
   });
 });
 
-/* SMOOTH SCROLL WITH HEADER OFFSET */
+/* SMOOTH SCROLL */
 navAnchors.forEach((link) => {
   link.addEventListener("click", (e) => {
     e.preventDefault();
 
-    const targetId = link.getAttribute("href");
-    const target = document.querySelector(targetId);
-    const headerHeight = header.offsetHeight;
+    const target = document.querySelector(link.getAttribute("href"));
+    if (!target) return;
 
-    const targetPosition =
+    const offset = header.offsetHeight + 10;
+    const top =
       target.getBoundingClientRect().top +
       window.pageYOffset -
-      headerHeight -
-      10;
+      offset;
 
     window.scrollTo({
-      top: targetPosition,
+      top,
       behavior: "smooth",
     });
   });
 });
 
-/* CLOSE MENU ON RESIZE */
+/* RESIZE FIX */
 window.addEventListener("resize", () => {
-  if (window.innerWidth > 768) {
-    menuOpen = false;
-    navLinks.style.display = "flex";
-  } else {
-    navLinks.style.display = "none";
+  if (window.innerWidth > MOBILE_BREAKPOINT) {
+    navLinks.classList.remove("open");
   }
 });
