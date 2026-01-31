@@ -25,7 +25,7 @@
   --transition-fast: 0.2s ease;
   --transition-slow: 0.4s ease;
 
-  --header-height: 72px;
+  --header-height: 140px;
   --max-width: 1100px;
 }
 
@@ -63,10 +63,15 @@ body {
   position: fixed;
   top: 0;
   inset-inline: 0;
+  height: var(--header-height);
   background: var(--bg-glass);
   backdrop-filter: blur(14px);
   z-index: 1000;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transition:
+    background var(--transition-slow),
+    box-shadow var(--transition-slow),
+    height var(--transition-slow);
 }
 
 .header.scrolled {
@@ -75,10 +80,32 @@ body {
 }
 
 .nav {
-  padding-inline: 1.4rem;
+  height: 100%;
+  padding-inline: 1.6rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transition: padding var(--transition-slow);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.logo img {
+  height: 82%;
+  max-height: 115px;
+  width: auto;
+  transition:
+    transform var(--transition-fast),
+    filter var(--transition-fast);
+}
+
+.logo img:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
 }
 
 /* ===== NAV ===== */
@@ -100,6 +127,10 @@ body {
   flex-direction: column;
   padding: 1.8rem;
   gap: 1.4rem;
+  transition:
+    opacity var(--transition-slow),
+    transform var(--transition-slow),
+    visibility var(--transition-slow);
 }
 
 .nav-links.open {
@@ -169,11 +200,6 @@ body {
   margin-top: 1.2rem;
   font-size: 1rem;
   color: var(--text-soft);
-}
-
-.hero-3d {
-  margin-top: 3rem;
-  height: 120px;
 }
 
 /* ===== SECTIONS ===== */
@@ -287,7 +313,6 @@ p {
     filter var(--transition-fast);
 }
 
-/* Hover / focus */
 .whatsapp-float:hover,
 .whatsapp-float:focus-visible {
   transform: translateY(-4px) scale(1.05);
@@ -298,12 +323,10 @@ p {
   animation-play-state: paused;
 }
 
-/* Active (click) */
 .whatsapp-float:active {
   transform: scale(0.96);
 }
 
-/* Icon */
 .whatsapp-icon {
   width: 45px;
   height: 45px;
@@ -314,7 +337,6 @@ p {
   transform: scale(1.08);
 }
 
-/* Pulse animation */
 @keyframes whatsapp-pulse {
   0% {
     box-shadow:
@@ -333,7 +355,6 @@ p {
   }
 }
 
-/* Reduce motion (accessibility) */
 @media (prefers-reduced-motion: reduce) {
   .whatsapp-float {
     animation: none;
@@ -362,7 +383,7 @@ p {
 
   .nav-links {
     position: static;
-    display: flex !important;
+    display: flex;
     flex-direction: row;
     background: none;
     padding: 0;
